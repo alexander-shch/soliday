@@ -1,37 +1,20 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { IconProp } from '@fortawesome/fontawesome-svg-core';
-import LoggedOutComponent from './view/loggedOut';
+import MainView from './view/main/main';
 
-export interface AppRoute {
-  path: string;
-  hash?: string;
-  title?: string;
-  component: any;
-  exact?: boolean;
-  /** Name of fontAwesome icon (must be imported and added to the library in App.tsx) */
-  icon?: IconProp;
-}
-
-export const adminAppRoutes: AppRoute[] = [
-  {
-    path: '/login',
-    component: LoggedOutComponent,
-  },
-];
+const SafePaths = () => {
+  return (
+    <Switch>
+      <Route exact path='/' component={MainView} />
+    </Switch>
+  );
+};
 
 export default class AppRouter extends Component {
   render() {
     return (
       <Switch>
-        {adminAppRoutes.map((route: AppRoute, index: number) => (
-          <Route
-            key={index}
-            exact={route.exact}
-            path={route.path}
-            component={route.component}
-          />
-        ))}
+        <Route path='/' exact component={SafePaths} />
       </Switch>
     );
   }

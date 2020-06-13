@@ -17,9 +17,9 @@ function getHeaders() {
   return headers;
 }
 
-function Http(config: AxiosRequestConfig) {
+function Http<T>(config: AxiosRequestConfig) {
   return axios
-    .request({
+    .request<T>({
       ...config,
       url: `${defaultApiPath}/${config.url}`,
       headers: getHeaders(),

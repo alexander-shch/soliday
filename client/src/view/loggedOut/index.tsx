@@ -9,7 +9,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Container from "@material-ui/core/Container";
 import { Avatar, Typography } from '@material-ui/core';
 
-const LoggedOutComponent = () => {
+const LogIn = () => {
     return (
       <ContentComponent className='center'>
         <Container component='main' maxWidth='xs'>
@@ -39,4 +39,4 @@ const LoggedOutComponent = () => {
     );
   };
   
-  export default LoggedOutComponent;
+  export default LogIn;
