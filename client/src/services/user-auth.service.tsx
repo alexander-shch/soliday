@@ -1,31 +1,33 @@
 import React, { Component } from 'react';
 
 export interface UserAuthServiceModel {
-  state: boolean;
-  setState: (v: boolean) => void;
+  state: string | null;
+  setState: (token: string) => void;
 }
 
 export const UserAuthService = React.createContext<UserAuthServiceModel>({
-  state: false,
+  state: null,
   setState: () => void 0,
 });
 
 export default class UserAuthServiceContainer extends Component {
   state = {
-    isLoggedIn: false,
+    token: localStorage.getItem('token'),
   };
 
-  setNewUserState(newVal: boolean) {
-    this.setState({ isLoggedIn: newVal });
+  setNewUserState(token: string) {
+    localStorage.setItem('token', token);
+    this.setState({ token });
   }
 
   render() {
     return (
       <UserAuthService.Provider
         value={{
-          state: this.state.isLoggedIn,
+          state: this.state.token,
           setState: this.setNewUserState.bind(this),
-        }}>
+        }}
+      >
         {this.props.children}
       </UserAuthService.Provider>
     );
