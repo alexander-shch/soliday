@@ -1,34 +1,16 @@
-import React, { Component } from 'react'
-import fevoLogo from '../../assets/media/fevo_white.png';
+import React, { Component } from 'react';
+import solidayLogo from '../../assets/media/soliday.jpg';
+
+import './nav-bar.component.scss';
 
 export default class NavBar extends Component {
   render() {
     return (
-      <nav className='navbar is-dark' role='navigation' aria-label='main navigation'>
-        <div className='navbar-brand'>
-          <a className='navbar-item' href='/'>
-            <img src={fevoLogo} alt='fevo logo'/>
-          </a>
-  
-          <button className='navbar-burger burger' aria-label='menu' aria-expanded='false'>
-            <span aria-hidden='true'></span>
-            <span aria-hidden='true'></span>
-            <span aria-hidden='true'></span>
-          </button>
-        </div>
-  
-    <div className='navbar-menu'>
-      <div className='navbar-end'>
-        <div className='navbar-item'>
-          <div className='buttons'>
-            <a href='/auth/logout' className='button is-primary'>
-              Log out
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </nav>
-        )
-    }
+      <nav className='navbar' role='navigation' aria-label='main navigation'>
+        <a className='navbar-item' href='/'>
+          <img src={solidayLogo} alt='soliday' />
+        </a>
+      </nav>
+    );
+  }
 }

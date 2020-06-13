@@ -1,42 +1,18 @@
-import { useMutation } from "@apollo/react-hooks";
-import gql from "graphql-tag";
-import React, { useState } from "react";
-import "../login.scss";
+import React, { useState } from 'react';
+import '../login.scss';
 
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
-import Typography from "@material-ui/core/Typography";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
 const SignUp = () => {
-  const [name, setName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const SIGNUP = gql`
-    mutation signUp(
-      $name: String!
-      $lastName: String!
-      $email: String!
-      $password: String!
-    ) {
-      signUp(
-        name: $name
-        lastName: $lastName
-        email: $email
-        password: $password
-      ) {
-        token
-        user {
-          name
-        }
-      }
-    }
-  `;
-  const [signUp] = useMutation(SIGNUP);
+  const [name, setName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   return (
     <div className='fade-in'>
@@ -51,14 +27,6 @@ const SignUp = () => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          signUp({
-            variables: {
-              name,
-              lastName,
-              email,
-              password,
-            },
-          });
         }}
       >
         <Grid container={true} spacing={2}>
