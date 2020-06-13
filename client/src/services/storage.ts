@@ -1,6 +1,6 @@
 import { addNotification } from '../services/notifications/notifications';
 
-enum StorageField {
+export enum StorageField {
   TOKEN = 'token',
 }
 

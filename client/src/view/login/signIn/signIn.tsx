@@ -5,14 +5,14 @@ import { Avatar, Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import { logIn } from '../../../services/auth';
+import { logIn, getUserData } from '../../../services/auth';
 
 const SignIn = () => {
   const [email, setEmail] = useState('admin@gmail.com');
   const [password, setPassword] = useState('o87y3hu4g');
 
   const login = () => {
-    logIn(email, password);
+    logIn(email, password).then(() => getUserData());
   };
 
   return (

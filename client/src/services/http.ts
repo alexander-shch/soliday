@@ -1,20 +1,18 @@
 import axios, { AxiosRequestConfig } from 'axios';
+import storage, { StorageField } from './storage';
 
 const defaultApiPath = 'http://localhost:3005';
 
 function getToken() {
-  return localStorage.getItem('token');
+  return storage.get(StorageField.TOKEN);
 }
 
 function getHeaders() {
-  const headers = new Headers();
   const token = getToken();
-  if (token) {
-    headers.append('Authorization', `Bearer ${token}`);
-  }
-  headers.append('Content-Type', 'application/json');
-
-  return headers;
+  return {
+    Authorization: `Bearer ${token}`,
+    'Content-Type': 'application/json',
+  };
 }
 
 function Http<T>(config: AxiosRequestConfig) {

@@ -19,7 +19,9 @@ import {
 import MainAppRouter from './app-router';
 import NavBar from './components/nav-bar/nav-bar.component';
 import LoginComponent from './view/login';
-import authState from './services/auth';
+import authState, { getUserData } from './services/auth';
+import { Subscriber } from 'rxjs';
+import { User } from '../../server/src/models/user';
 
 library.add(
   faCog,
@@ -36,18 +38,28 @@ library.add(
 class IsLoggedIn extends Component {
   state = {
     loggedIn: false,
+    user: {},
   };
-  auth = authState.subscribe((token) => {
-    this.setState({ loggedIn: Boolean(token) });
-  });
+  subs = new Subscriber();
+
+  componentDidMount() {
+    getUserData();
+    this.subs.add(
+      authState.subscribe(({ user }) => {
+        this.setState({ loggedIn: Boolean(user), user });
+      })
+    );
+  }
 
   componentWillUnmount() {
-    this.auth.unsubscribe();
+    this.subs.unsubscribe();
   }
 
   render() {
     if (this.state.loggedIn) {
-      return <ContentComponent>This is profile page</ContentComponent>;
+      return (
+        <ContentComponent>{JSON.stringify(this.state.user)}</ContentComponent>
+      );
     }
     return <LoginComponent />;
   }
